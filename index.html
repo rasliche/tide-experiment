@@ -7,7 +7,7 @@
     <body>
         <script>
             const tides = fetch("https://api.tidesandcurrents.noaa.gov/api/datagetter?product=predictions&application=Reef.Scout&date=today&datum=MLLW&station=8724238", {
-                mode: 'no-cors'
+                //mode: 'no-cors'
             })
                 .then(response => response.json())
                 .then(data => console.log(data))
