@@ -5,12 +5,14 @@
         <link href="/background.css" rel="text/stylesheet">
     </head>
     <body>
+        <p id="raw-tide-data"></p>
         <script>
-            const tides = fetch("https://api.tidesandcurrents.noaa.gov/api/datagetter?product=predictions&application=Reef.Scout&date=today&datum=MLLW&station=8724238", {
-                //mode: 'no-cors'
-            })
+            const tideDataContainer = document.querySelector('#raw-tide-data')
+            fetch("https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=Reef.Scout&date=today&time_zone=lst_ldt&datum=MLLW&station=8724238&&interval=hilo&units=english&format=json")
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(({ predictions }) => {
+                    return tideDataContainer.innerText = JSON.stringify(predictions)
+                })
                 .catch(error => console.log(error))
         </script>
     </body>
